@@ -1,0 +1,70 @@
+{% extends 'base.html'%}
+{% import 'macros.html' as macro %}
+{% block styles%}
+ 
+{{ super() }}
+
+<link rel="stylesheet" href="{{url_for('static',filename='css/styles.css')}}"> {% endblock %} {% block content %}
+
+<div class="row">
+        <img src="/static/images/blog.jpg" style= "margin-right: 100%;padding-right: 100%;">
+</div>
+<br>
+<div class="container-fluid" style="font-family: 'Russo One', sans-serif;">
+
+
+    <div class="container">
+        <div class="content">
+            <div class="title-area">
+
+                <h1 class="title-modern" style="font-size:10vh;color:rgb(11, 12, 12); text-align: center;padding: 40px">Just Blog It</h1>
+
+                <h3 style="font-size:6vh;color:rgb(10, 10, 10);opacity:0.5; text-align: center;padding: 40px">Published Posts</h3>
+
+                <hr>
+
+                <div class="container">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <h3 style="font-size:24px;">Skint Dad</h3>
+                        <p style="font-size:18px;">So when I talk about coming at a niche from a different angle, this example is exactly what I mean.
+                             Skint Dad is a site that helps young / new dads save money and be more frugal in their day to day living. There’s also
+                             a section on their that shows guys how to make a little more cash on top of their monthly day job wage, which is vital
+                             in some cases just to keep your head above water.  A lot of new dads have the added stress of not having their wives’ 
+                             or girlfriends’ wage coming in each month, due to the temporary career change in being a full time mum of a baby. 
+                             So having some content around how they can make a few extra “Ps” in their wallet each month, can ease the burden somewhat.
+                        <hr>
+                        <br>
+                        
+                        <h3 style="font-size:24px;">BreakingintoStartups.com</h3>
+                        <p style="font-size:18px;">A very inspiring blog that contains motivational stories about startups and the people who work in 
+                            them and create them. If you need a pick me up after a bad day at the office or think that you can’t become that person 
+                            who goes it along and starts up something awesome, then why not have a read. You’ll soon hear about people who literally 
+                            only had the shirt on their backs and who rose up to be a success in business and in life.
+                        </p>
+
+                        <hr>
+                        <br>
+
+                        <p style="font-size:18px;">But the pyjama purists were confounded. Arianna's money talked just as loudly online as off, and
+                            the Huffington Post quickly became one of the most influential and popular journals on the web.
+                            It recruited professional columnists and celebrity bloggers. It hoovered up traffic. Its launch
+                            was a landmark moment in the evolution of the web because it showed that many of the old rules
+                            still applied to the new medium: a bit of marketing savvy and deep pockets could go just as far
+                            as geek credibility, and get there faster.</p>
+
+                        <hr>
+                        <br>
+
+
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

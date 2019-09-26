@@ -1,4 +1,13 @@
 from . import db
+from datetime import datetime
+# from werkzeug.security import generate_password_hash, check_password_hash
+# from sqlalchemy.sql import func
+# from flask_login import UserMixin,login_required
+# from . import login_manager
+
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return User.get(user_id)
 
 
 class Reader(db.Model):

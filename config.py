@@ -1,7 +1,7 @@
 import os
 
 class Config:
-    SECRET_KEY = os.urandom("mucyo")
+    SECRET_KEY = "mucyo"
 
 class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")

@@ -23,12 +23,40 @@ class Writer(UserMixin,db.Model):
     __tablename__ = 'writers'
     id = db.Column(db.Integer,primary_key = True)
     name = db.Column(db.String(255))
+    blogs = db.relationship('Blog', backref = 'writer', lazy = "dynamic")
+    comments = db.relationship('Comment', backref = 'writer', lazy = "dynamic")
 
 
 class Blogs(db.Model):
     __tablename__ = 'blogs'
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String)
+    body = db.Column(db.String)
+    writer_id = db.Column(db.Integer, db.ForeignKey('writers.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref = 'blog', lazy = "dynamic")
+
+     all_blogs = []
+    
+    def __init__(self,title,body):
+        self.title = title
+        self.body = body
+        
+
+    def save_blog(self):
+        '''
+        Save blogs
+        '''
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def clear_blogs(cls):
+        blog.all_blogs.clear()
+
+    def get_blogs(id):
+        blogs = Blog.query.filter_by(title_id=id).all()
+        return blogs
 
 
 class Comment(db.Model):
@@ -36,7 +64,7 @@ class Comment(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     body = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    blog_id = db.Column(db.Integer, db.ForeignKey('blogs.id'))
     writer_id = db.Column(db.Integer, db.ForeignKey('writers.id'))
 
 

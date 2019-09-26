@@ -1,16 +1,23 @@
 import os
 
+
 class Config:
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mwiza:mwiza@localhost/blogs'
     SECRET_KEY = "mucyo"
+    UPLOADED_PHOTOS_DEST ='app/static/images'
+    MAIL_SERVER = 'smtp.googlemail.com'
+    MAIL_PORT = 587
+    MAIL_USE_TLS = True
+    MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
+    MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
 
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    pass
 
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://immanuel:7007@localhost/blog'
-    DEBUG = True
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mwiza:mwiza@localhost/blogs'
 
-config_options ={"production":ProdConfig,"default":DevConfig}
+    DEBUG = True
 
 config_options = {
     'development':DevConfig,

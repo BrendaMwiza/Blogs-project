@@ -1,13 +1,13 @@
 from . import db
 from datetime import datetime
-# from werkzeug.security import generate_password_hash, check_password_hash
-# from sqlalchemy.sql import func
-# from flask_login import UserMixin,login_required
-# from . import login_manager
+from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.sql import func
+from flask_login import UserMixin,login_required
+from . import login_manager
 
-# @login_manager.user_loader
-# def load_user(user_id):
-#     return User.get(user_id)
+@login_manager.user_loader
+def load_user(user_id):
+    return User.get(user_id)
 
 
 class User(db.Model):
@@ -36,7 +36,7 @@ class Blogs(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref = 'blog', lazy = "dynamic")
 
-     all_blogs = []
+    all_blogs = []
     
     def __init__(self,title,body):
         self.title = title

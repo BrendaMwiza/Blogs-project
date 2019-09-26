@@ -1,7 +1,7 @@
 from app import kora_app
 # from flask_script import Manager,Server
 from app import kora_app,db
-from app.models import Reader, Writer, Post, Comment, Subscription
+from app.models import User, Writer, Blog, Comment, Subscription
 # from flask_migrate import Migrate, MigrateCommand
 
 #Creating app instance
@@ -19,7 +19,7 @@ manager = Manager(app)
 
 @manager.shell
 def make_shell_context():
-    return dict(app = app, db = db, Reader = Reader, Writer = Writer, Post = Post, Comment = Comment, Subscription = Subscription )
+    return dict(app = app, db = db, User = User, Writer = Writer, Blog = Blog, Comment = Comment, Subscription = Subscription )
 
 #Testing Settings
 @manager.command

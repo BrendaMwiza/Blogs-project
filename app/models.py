@@ -10,7 +10,7 @@ from datetime import datetime
 #     return User.get(user_id)
 
 
-class Reader(db.Model):
+class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
@@ -25,8 +25,8 @@ class Writer(UserMixin,db.Model):
     name = db.Column(db.String(255))
 
 
-class Blog(db.Model):
-    __tablename__ = 'posts'
+class Blogs(db.Model):
+    __tablename__ = 'blogs'
     id = db.Column(db.Integer,primary_key = True)
     title = db.Column(db.String)
 

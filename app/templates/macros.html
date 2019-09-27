@@ -16,3 +16,11 @@
 
     {% endfor %}
 {% endmacro %}
+
+{% macro displayQuoteList(quote_list) %}
+
+    {% for quote in quote_list %}
+        <li>{{ quote.quote}}</li>
+    {% endfor %}
+
+{% endmacro %}

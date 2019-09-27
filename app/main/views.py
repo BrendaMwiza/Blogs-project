@@ -5,6 +5,7 @@ from .forms import BlogForm, CommentForm, SubscriptionForm, UpdateProfile
 from ..models import User,Writer,Blogs,Comment,Subscription
 from flask_login import login_required,current_user
 from app import login_manager
+from ..requests import get_quote
 
 @login_manager.user_loader
 def load_user(writer_id):
@@ -20,7 +21,10 @@ def index():
 
     blogs=Blogs.query.all()
 
-    return render_template('index.html', blogs = blogs)
+    grt_quote = get_quote('random_quotes')
+    print(grt_quote)
+
+    return render_template('index.html', blogs = blogs, random_quotes =  grt_quote )
 
 @main.route('/blog', methods=['GET','POST'])
 def new_blog():

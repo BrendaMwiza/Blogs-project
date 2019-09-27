@@ -3,19 +3,19 @@
 {% block content %}
 <div class="container">
     <div class="row">
-    <!-- displaying  Username-->
+    <!-- displaying  Username of the writer-->
         <div class="col-md-4">
-            <h3> {{user.username| capitalize}} </h3>
+            <h3> {{writer.username| capitalize}} </h3>
 
-            <!--Displaying user bio-->
-            {% if user.bio %}
-            <p> {{user.bio}}</p>
+            <!--Displaying writer bio-->
+            {% if writer.bio %}
+            <p> {{writer.bio}}</p>
             {%else%}
-            <p> {{user.username| capitalize}} has no bio </p>
+            <p> {{writer.username| capitalize}} has no bio </p>
             {% endif %}
 
-            {% if user == current_user %}
-            <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
+            {% if writer == current_user %}
+            <a href="{{url_for('main.update_profile',uname=writer.username)}}">Edit profile</a>
             {% endif %}
 
         </div>
@@ -23,8 +23,8 @@
     <!--Display profile photo-->
         <div class="col-md-4">
 
-            {% if user.profile_pic_path %}
-            <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
+            {% if writer.profile_pic_path %}
+            <img src="{{url_for('static',filename=writer.profile_pic_path)}}" alt="" class="img-thumbnail">
             {%else%}
             <p>No profile picture</p>
             {% endif %}

@@ -14,34 +14,39 @@ class User(UserMixin,db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
+    email = db.Column(db.String(255),unique = True,index = True)
+    
+
+    
+class Writer(UserMixin,db.Model):
+    __tablename__ = 'writers'
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    blogs = db.relationship('Blogs', backref = 'writer', lazy = "dynamic")
+    comments = db.relationship('Comment', backref = 'writer', lazy = "dynamic")
+    email = db.Column(db.String(255),unique = True,index = True)
     pass_secure = db.Column(db.String(255))
     password_hash = db.Column(db.String(255))
-    email = db.Column(db.String(255),unique = True,index = True)
+    
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
 
     @property
-        def password(self):
-            raise AttributeError('You cannot read the password attribute')
+    def password(self):
+        raise AttributeError('You cannot read the password attribute')
 
-        @password.setter
-        def password(self, password):
-            self.pass_secure = generate_password_hash(password)
+    @password.setter
+    def password(self, password):
+        self.pass_secure = generate_password_hash(password)
 
 
-        def verify_password(self,password):
-            return check_password_hash(self.pass_secure,password)
+    def verify_password(self,password):
+        return check_password_hash(self.pass_secure,password)
 
 
     def __repr__(self):
         return f'User {self.username}'
 
-class Writer(UserMixin,db.Model):
-    __tablename__ = 'writers'
-    id = db.Column(db.Integer,primary_key = True)
-    name = db.Column(db.String(255))
-    blogs = db.relationship('Blog', backref = 'writer', lazy = "dynamic")
-    comments = db.relationship('Comment', backref = 'writer', lazy = "dynamic")
 
 
 class Blogs(db.Model):

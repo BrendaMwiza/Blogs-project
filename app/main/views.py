@@ -7,20 +7,20 @@ from flask_login import login_required,current_user
 from app import login_manager
 
 @login_manager.user_loader
-def load_user(user_id):
+def load_user(writer_id):
     '''
-    @login_manager.user_loader Passes in a writer_id to this function
-    Function queries the database and gets a user's id as a response
+    @login_manager.writer_loader Passes in a writer_id to this function
+    Function queries the database and gets a writer's id as a response
     '''
-    return User.query.get(user_id)
+    return Writer.query.get(writer_id)
 
 #Views
 @main.route('/')
 def index():
 
-    blogs=blog.query.all()
+    blogs=Blogs.query.all()
 
-    return render_template('index.html', blogs=blogs)
+    return render_template('index.html', blogs = blogs)
 
 @main.route('/blog', methods=['GET','POST'])
 def new_blog():
@@ -87,41 +87,42 @@ def subscriber():
 
     return render_template('index.html',email= email, subscribe_form=form )
 
-@main.route('/user/<uname>')
+@main.route('/writer/<uname>')
 def profile(uname):
-    user = User.query.filter_by(username = uname).first()
+    writer = Writer.query.filter_by(username = uname).first()
 
-    if user is None:
+    if writer is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user)
+    return render_template("profile/profile.html", writer = writer)
 
-@main.route('/user/<uname>/update',methods = ['GET','POST'])
+@main.route('/writer/<uname>/update',methods = ['GET','POST'])
 @login_required
 def update_profile(uname):
-    user = User.query.filter_by(username = uname).first()
-    if user is None:
+    writer = Writer.query.filter_by(username = uname).first()
+    if writer is None:
         abort(404)
 
     form = UpdateProfile()
 
     if form.validate_on_submit():
-        user.bio = form.bio.data
+        writer.bio = form.bio.data
 
-        db.session.add(user)
+        db.session.add(writer)
         db.session.commit()
 
-        return redirect(url_for('.profile',uname=user.username))
+        return redirect(url_for('.profile',uname=writer.username))
 
     return render_template('profile/update.html',form =form)
 
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
+@main.route('/writer/<uname>/update/pic',methods= ['POST'])
 @login_required
 def update_pic(uname):
-    user = User.query.filter_by(username = uname).first()
+    writer = Writer.query.filter_by(username = uname).first()
     if 'photo' in request.files:
         filename = photos.save(request.files['photo'])
         path = f'photos/{filename}'
-        user.profile_pic_path = path
+        writer.profile_pic_path = path
         db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))     
+        return redirect(url_for('main.profile',uname=uname)) 
+    return render_template('profile/update.html',form =form)

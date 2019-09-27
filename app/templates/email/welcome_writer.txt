@@ -1,4 +1,4 @@
 Hello {{writer.username}}
 Well done joining other Blogers
 We have just seen you have signed up for our application and want 
-to welcome you to the family. Please enjoy posting your own lovely Blogs.
+to welcome you to the family. Please enjoy posting your own lovely Blogs.https://github.com/BrendaMwiza/Blogs-project.git

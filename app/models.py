@@ -96,3 +96,17 @@ class Subscription(db.Model):
     email = db.Column(db.String)
     name = db.Column(db.String)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+class Quotes:
+    '''
+    Quotes class to define quote Object.
+    '''
+
+    def __init__(self,id,author,quote):
+        self.id =id
+        self.author = author
+        self.quote = quote
+        
+
+
+        

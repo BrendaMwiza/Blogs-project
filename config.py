@@ -10,6 +10,7 @@ class Config:
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
+    QUOTES_API_BASE_URL = 'http://quotes.stormconsultancy.co.uk/random.json'
 
 class ProdConfig(Config):
     pass

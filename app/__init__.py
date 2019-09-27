@@ -5,11 +5,13 @@ from config import config_options
 from flask import Blueprint
 from flask_login import LoginManager
 from flask_uploads import UploadSet,configure_uploads,IMAGES
+from flask_mail import Mail
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 
 photos = UploadSet('photos',IMAGES)
+mail = Mail()
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'

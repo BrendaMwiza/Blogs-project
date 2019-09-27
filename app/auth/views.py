@@ -4,6 +4,7 @@ from . import auth
 from .. import db
 from ..models import Writer
 from .forms import RegistrationForm,LoginForm
+from ..email import mail_message
 
 
 

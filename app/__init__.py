@@ -4,9 +4,12 @@ from flask import Flask
 from config import config_options
 from flask import Blueprint
 from flask_login import LoginManager
+from flask_uploads import UploadSet,configure_uploads,IMAGES
 
 bootstrap = Bootstrap()
 db = SQLAlchemy()
+
+photos = UploadSet('photos',IMAGES)
 
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
@@ -30,6 +33,7 @@ def kora_app(config_name):
     from .auth import auth as auth_blueprint
     app.register_blueprint(auth_blueprint,url_prefix = '/authenticate')
 
-
+    # configure UploadSet
+    configure_uploads(app,photos)
 
     return app

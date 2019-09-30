@@ -1,6 +1,6 @@
 from app import kora_app,db
 from flask_script import Manager,Server
-from app.models import User, Writer, Blogs, Comment, Subscription
+from app.models import Writer, Blogs, Comment, Subscription
 from flask_migrate import Migrate, MigrateCommand
 
 #Creating app instance

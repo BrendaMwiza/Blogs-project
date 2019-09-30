@@ -2,7 +2,7 @@ from flask import render_template,request,redirect,url_for,flash,abort
 from . import main
 from .. import db
 from .forms import BlogForm, CommentForm, SubscriptionForm, UpdateProfile
-from ..models import User,Writer,Blogs,Comment,Subscription
+from ..models import Writer,Blogs,Comment,Subscription
 from flask_login import login_required,current_user
 from app import login_manager
 from ..requests import get_quote
@@ -46,7 +46,7 @@ def new_blog():
         return redirect(url_for('main.index'))
 
     title = f'{blog.title}'
-    return render_template('blog.html',title= title, blog_form=blog_form)
+    return render_template('index.html',title= title, blog_form=blog_form)
 
 
 @main.route('/comments/<int:id>', methods=['GET', 'POST'])

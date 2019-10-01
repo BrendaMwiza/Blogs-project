@@ -45,12 +45,11 @@ def new_blog():
         new_blog.save_blog()
         return redirect(url_for('main.index'))
 
-    title = f'{blog.title}'
-    return render_template('index.html',title= title, blog_form=blog_form)
+    
+    return render_template('index.html', blog_form=blog_form)
 
 
 @main.route('/comments/<int:id>', methods=['GET', 'POST'])
-@login_required
 def comments(id):
     comment_form = CommentForm()
     comment = Comment.query.order_by('-id').all()

@@ -39,6 +39,12 @@ def register():
         user =Writer(email=form.email.data,name=form.username.data,password=form.password.data)
         db.session.add(user)
         db.session.commit()
+        try:
+            message = Message("Hello Welcome to the blog post",sender=("Blogs","brendabrizy@gmail.com"),recipients=[form.email.data])
+            mail.send(message)
+        except Exception as e:
+            print("email not sent")
+        return redirect(url_for('auth.login'))
 
         return redirect(url_for('auth.login'))
     return render_template('auth/register.html',registration_form=form)

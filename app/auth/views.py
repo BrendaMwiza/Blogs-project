@@ -5,6 +5,7 @@ from .. import db
 from ..models import Writer
 from .forms import RegistrationForm,LoginForm
 from ..email import mail_message
+from werkzeug.security import check_password_hash
 
 
 

@@ -27,6 +27,7 @@ def index():
     return render_template('index.html', blogs = blogs, random_quotes =  grt_quote )
 
 @main.route('/blog', methods=['GET','POST'])
+@login_required
 def new_blog():
     '''
     New Blog Page
@@ -39,27 +40,30 @@ def new_blog():
 
 
         # updated review instance
-        new_blog = Blog(title=title,body = body)
+        new_blog = Blogs(title=title,body = body)
 
         #save review blog
         new_blog.save_blog()
-        return redirect(url_for('main.index'))
+        return redirect(url_for('.index'))
 
     
-    return render_template('index.html', blog_form=blog_form)
+    return render_template('new_blog.html', blog_form=blog_form)
 
 
-@main.route('/comments/<int:id>', methods=['GET', 'POST'])
-def comments(id):
+@main.route('/comments/<int:blog_id>', methods=['GET', 'POST'])
+def comments(blog_id):
+    current_blog = Blogs.query.get(blog_id)
     comment_form = CommentForm()
-    comment = Comment.query.order_by('-id').all()
+    comment = Comment.query.filter_by(blog_id = blog_id).all()
 
     if comment_form.validate_on_submit():
         comment = comment_form.comment.data()
-        new_comment = Comment(comment=comment,users=current_user.username)
+        blog_id = blog_id
+        new_comment = Comment(comment=comment,blog_id=blog_id)
         new_comment.save_comment()
-        return redirect(url_for('main.comments',id = blog.id))
-    return render_template('comments.html')
+        blog = blog.query.get_or_404(blog_id)
+        return redirect(url_for('.comments',blog_id=blog_id))
+    return render_template('comments.html',comment=comment,comment_form=comment_form,current_blog=current_blog)
 
 @main.route('/delete/<int:id>')
 @login_required
@@ -67,7 +71,7 @@ def delete(id):
     del_comment = Comment.query.get(id)
     db.session.delete(del_comment)
     db.session.commit()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.comments'))
 
 @main.route('/subscription',methods = ["GET","BLOG"])
 def subscriber():

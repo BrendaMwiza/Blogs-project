@@ -1,7 +1,9 @@
 {% macro displayBlog(blog_list) %}
     {% for blog in blog_list %}
 
-    <h3><a href="/blog/blog.id"></a></h3>
+    <h3><a href="/blog/blog.id"></a>{{blog.title|upper}}</h3>
+    <h3><a href="/blog/blog.id"></a>{{blog.body|upper}}</h3>
+
     {% endfor %}
 {% endmacro %}
 

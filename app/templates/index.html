@@ -11,7 +11,8 @@
 {% block content %}
 
 <div class="row">
-        <img src="/static/images/blog 2.jpeg" style= "width:100%;">
+        <img src="/static/images/blog 4.png" style= "width:50%;  position: relative;animation-duration: 4s;
+        animation-delay: 2s;animation-name: example;animation-direction: alternate;">
 </div>
 <br>
 <div class="container-fluid" style="font-family: 'Russo One', sans-serif;">
@@ -42,8 +43,7 @@
                             The truth is, contentment isn't the answer to singleness. Being content about being single won't solve my problems. 
                             It won't erase all of my desires. It certainly won't get me a relationship in the next couple of days.
                         </p>
-                        <a href="{{url_for('auth.login')}}" class="btn btn-primary">Update blog</a>
-                        <a href="{{url_for('auth.register')}}" class="btn btn-primary">comment blog</a>
+                        <a href="add/comments/" style="background-color: rgb(133, 143, 161)" class="btn btn-primary">comment blog</a>
                     </div>
                         
                         
@@ -54,8 +54,7 @@
                             be perfect. If we only had that job, boyfriend, or trip. If we only felt rested, beautiful, or successful. If only.
                             I hate to break it to you, but there is no perfection in "if onlys."
                         </p>
-                        <a href="{{url_for('auth.login')}}" class="btn btn-primary">Update blog</a>
-                        <a href="{{url_for('auth.register')}}" class="btn btn-primary">comment blog</a>
+                        <a href="add/comments/" style="background-color: rgb(133, 143, 161)" class="btn btn-primary">comment blog</a>
                     </div>
                         
                         
@@ -67,8 +66,7 @@
                             we must not let yesterday dictate today. We can be tempted to identify "seasons" of our lives and make excuses for today 
                             because "that's just the season of life we're in right now."
                         </p>
-                        <a href="{{url_for('auth.login')}}" class="btn btn-primary">Update blog</a>
-                        <a href="{{url_for('auth.register')}}" class="btn btn-primary">comment blog</a>
+                        <a href="add/comments/" style="background-color: rgb(133, 143, 161)" class="btn btn-primary">comment blog</a>
                     </div>
                         
                         
@@ -79,13 +77,24 @@
                             every year and yet different each time. The way the house wraps itself in holiday colors. The way Christmas coffee cups 
                             start off the mornings with a bit of festivity.
                         </p>
-                        <a href="{{url_for('auth.login')}}" class="btn btn-primary">Update blog</a>
-                        <a href="{{url_for('auth.register')}}" class="btn btn-primary">comment blog</a>
+                        <a href="add/comments/" style="background-color: rgb(133, 143, 161)"  class="btn btn-primary">comment blog</a>
+                    </div>
+                    <div class="col-md-4">
+                        <b style="font-size: 20px; text-align:center;">{{ macro.displayBlog(blogs) }} </b>
+                        <a href="add/comments/" style="background-color: rgb(133, 143, 161)" class="btn btn-primary">comment blog</a>
+
                     </div>
                 </div>
             </div>
         </div>
+        <br><br><br>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-3"> <a href="{{url_for('main.new_blog')}}" style="background-color: rgb(133, 143, 161)" class="btn btn-primary">Post blog</a></div>
 
+            <div class="col-md-4"></div>
+
+        </div>
     </div>
     <hr>
     

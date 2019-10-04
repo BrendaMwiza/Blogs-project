@@ -43,7 +43,7 @@ export MAIL_PASSWORD=<Your-email-password>
 
 python3.6 manage.py server
 
-* To edit the code if you will need any dependencies you will need to navigate to the virtual environment in order to install them from there to avoid version conflicts
+* To edit the code if you will need any dependency you will need to navigate to the virtual environment in order to install them from there to avoid version conflicts
 
 source virtualenv/bin/activate
 

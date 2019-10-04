@@ -4,8 +4,8 @@ from app.models import Writer, Blogs, Comment, Subscription
 from flask_migrate import Migrate, MigrateCommand
 
 
-app = kora_app('development')
-
+app = kora_app('production')
+# app = create_app('production')
 
 
 manager = Manager(app)

@@ -14,7 +14,7 @@ class Config:
     QUOTE_API_KEY = os.environ.get('QUOTE_API_KEY')
 
 class ProdConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mwiza:mwiza@localhost/blogs'
